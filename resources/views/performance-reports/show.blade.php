@@ -1,0 +1,54 @@
+@php
+    $carbonLastDatetime = Carbon\Carbon::createFromTimeString($report->monitoring_time);
+@endphp
+<div>{{__('monitoring.report_show_url',['url'=>$report->url])}}</div>
+<div>{{__('monitoring.report_show_date',['date'=>$carbonLastDatetime->isoFormat('D MMMM YYYY'),'time'=>$carbonLastDatetime->isoFormat('h:mm:ss')])}}</div>
+<div>{{__('monitoring.performance_report_show_total_score',['score'=>$report->total_score,'strategy'=>$report->getViewStrategy()])}}</div>
+<div>
+    <h5>{{__('monitoring.performance_report_show_score_table')}}</h5>
+    <table>
+        <tr>
+            <td>FCP</td>
+            <td>{{$report->FCP}}</td>
+        </tr>
+        <tr>
+            <td>TTI</td>
+            <td>{{$report->TTI}}</td>
+        </tr>
+        <tr>
+            <td>speed_index</td>
+            <td>{{$report->speed_index}}</td>
+        </tr>
+        <tr>
+            <td>TBT</td>
+            <td>{{$report->TBT}}</td>
+        </tr>
+        <tr>
+            <td>LCP</td>
+            <td>{{$report->LCP}}</td>
+        </tr>
+        <tr>
+            <td>CLS</td>
+            <td>{{$report->CLS}}</td>
+        </tr>
+    </table>
+</div>
+@if($report->site->meta_check)
+    <div>
+        <h5>{{__('monitoring.performance_report_show_meta_data')}}</h5>
+        <table>
+            <tr>
+                <td>Title</td>
+                <td>{{$report->title}}</td>
+            </tr>
+            <tr>
+                <td>Description</td>
+                <td>{{$report->description}}</td>
+            </tr>
+            <tr>
+                <td>h1</td>
+                <td>{{$report->h1}}</td>
+            </tr>
+        </table>
+    </div>
+@endif
